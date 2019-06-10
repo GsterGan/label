@@ -1,0 +1,73 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<link rel="icon" href="/static/images/ico.ico" type="img/x-ico" />
+<link rel="stylesheet" href="/static/js/Jcrop-0.9.12/css/jquery.Jcrop.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/static/js/jqueryrotate/jqueryrotate/jQueryRotate.js"></script>
+<script src="/static/js/Juploadimg/upload_img/js/updateimg.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<title>登录</title>
+<script>
+
+</script>
+</head>
+<body bgcolor="#00d8eb">
+<table>
+    <tr>
+      <th rowspan="2"><img src="/static/images/back1-1.png" alt=""></th>
+      <td><h2>基于虹膜的亲缘关系判定研究系统</h2></td>
+      <td rowspan="2" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+      <td rowspan="2" align="center"><a href="/"><img src="/static/images/Shome.png" /><br>首页</td>
+      <td rowspan="2" align="center"><a href="/label"><img src="/static/images/Slabel.png" /><br>标注</td>
+      <td rowspan="2" align="center"><a href="/compare"><img src="/static/images/Scompare.png" /><br>比对</td>
+      <td rowspan="2" align="center"><a href="/find"><img src="/static/images/Sfind.png" /><br>检索</td>
+      <td rowspan="2" align="center"><a href="/login"><img src="/static/images/Slogin.png" /><br>登录</td>
+      <td rowspan="2" align="center"><a href="/quit"><img src="/static/images/Squit.png" /><br>退出</td>
+    </tr>
+    <tr>
+        <td><p><font size = "3" >先登录吧，不然就注册一个账号</font></p></td>
+    </tr>
+</table>
+
+<p>
+    <br><br><br>
+</p>
+<div align = "center">
+{% block body %}
+{% if error %}<p><strong>{{ error }}</strong>{% endif %}
+<form enctype='multipart/form-data' method='POST'>
+	<table cellspacing="10" style="background-color:#c0f7fc; border-radius: 10px 10px 10px 10px; box-shadow: darkslategrey 10px 10px 30px 5px ;">
+		<tr><td colspan="2" align="center">login</td></tr>
+		<tr>
+			<td align="center">
+				用户名：
+			</td>
+			<td>
+				<input name = "username" type="text">
+			</td>
+		</tr>
+		<tr>
+			<td align="center">
+				密码：
+			</td>
+			<td>
+				<input name = "password" type="password">
+			</td>
+		</tr>
+		<tr>
+			 <td><a href="/registe"><br><p><font size='2'>没有账号，去注册一个</font></p></td>
+			 <td align="center"><input type="submit" value="登录"style="width:65px; height:30px; border-radius: 8px 8px 8px 8px;"/></td>
+		</tr>
+	</table>
+</form>
+{% endblock %}
+<p>
+    <br><br><br>
+</p>
+	<div class="footer">指导老师：郭韦昱</br>计算机15 甘泉</div>
+</div>
+</body>
+
+</html>

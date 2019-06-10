@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+<link rel="icon" href="/static/images/ico.ico" type="img/x-ico" />
+<link rel="stylesheet" href="/static/js/Jcrop-0.9.12/css/jquery.Jcrop.css">
+<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="/static/js/Jcrop-0.9.12/js/jquery.Jcrop.min.js"></script>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<meta http-equiv="Content-Language" content="zh-cn" />
+<title>标注训练集</title>
+
+<script>
+jQuery(function($){
+  var jcrop_api;
+  
+  $('#img').Jcrop({
+    onChange: showCoords,
+    onSelect: showCoords,
+    onRelease: clearCoords
+  }, function(){
+    jcrop_api = this;
+  });
+  
+  $('#img').on('change','input',function(e){
+    var x1 = $('#x1').val(),
+    x2 = $('#x2').val(),
+    y1 = $('#y1').val(),
+    y2 = $('#y2').val();
+
+    jcrop_api.setSelect([x1, y1, x2, y2]);
+  });
+});
+  
+function showCoords(c){
+  $('#x1').val(c.x);
+  $('#y1').val(c.y);
+  $('#x2').val(c.x2);
+  $('#y2').val(c.y2);
+  $('#w').val(c.w);
+  $('#h').val(c.h);
+};
+  
+function clearCoords(){
+  $('#coords input').val('');
+};
+
+function lastPic(){
+  $('#btn_last')
+};
+
+function nextPic(){
+};
+
+function submitData(){
+
+};
+</script>
+
+</head>
+<body style="background-color:#00d8eb;">
+<table>
+<tr>
+  <td rowspan="2"><img src="/static/images/back1-1.png" /></td>
+  <td><h2>基于虹膜的亲缘关系判定研究系统</h2></td>
+  <td rowspan="2" align="center">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+  <td rowspan="2" align="center"><a href="/"><img src="/static/images/Shome.png" /><br>首页</td>
+  <td rowspan="2" align="center"><a href="/label"><img src="/static/images/Slabel.png" /><br>标注</td>
+  <td rowspan="2" align="center"><a href="/compare"><img src="/static/images/Scompare.png" /><br>比对</td>
+  <td rowspan="2" align="center"><a href="/find"><img src="/static/images/Sfind.png" /><br>检索</td>
+  <td rowspan="2" align="center"><a href="/login"><img src="/static/images/Slogin.png" /><br>登录</td>
+  <td rowspan="2" align="center"><a href="/quit"><img src="/static/images/Squit.png" /><br>退出</td>
+</tr>
+<tr>
+    <td><p><font size = "3" >在此页面进行图片的裁切和信息的添加和验证</font></p></td>
+</tr>
+</table>
+
+<form action="label" enctype='multipart/form-data' method='POST'>
+<table align="center" style="background-color:#c0f7fc; border-radius: 15px 15px 15px 15px; box-shadow: darkslategrey 10px 10px 30px 5px ;">
+    <tr>
+      <td>&nbsp;</td>
+      <td rowspan="7"><p><i>使用鼠标框选取图中眼睛部分</i></p>
+      <img id = "img" src = "{{img_src}}" width="800" alt="此条目还没有图片"></td>
+      <td>环号<br><input name="ringId" type="text" value="{{ringId}}" /></td>
+    </tr>
+    <tr>
+      <td><label>x1:<input type="text" class="input" size="6" id="x1" name="x1">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>父亲环号<br><input name="paparingId" type="text" value="{{paparingId}}" /></td>
+    </tr>
+    <tr>
+      <td><label>y1:<input type="text" class="input" size="6" id="y1" name="y1">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>母亲环号<br><input type="text" value="{{mamaringId}}" /></td>
+    </tr>
+    <tr>
+      <td><label>x2:<input type="text" class="input" size="6" id="x2" name="x2">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>性别<br><input type="text"  value="{{sex}}" /></td>
+      <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="btn_next" onclick="nextPic()" style="width:65px; height:50px; border-radius: 15px 15px 15px 15px;"/>下一个</button></td>
+    </tr>
+    <tr>
+      <td><label>y2:<input type="text" class="input" size="6" id="y2" name="y2">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>羽色<br><input name="featherColor" type="text" value="{{featherColor}}"></td>
+    </tr>
+    <tr>
+      <td><label>H:<input type="text" class="input" size="6" id="h" name="h">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>血统<br><input name="bloodline" type="text" value="{{bloodline}}"></td>
+    </tr>
+    <tr>
+      <td><label>W:<input type="text" class="input" size="6" id="w" name="w">&nbsp;&nbsp;&nbsp;&nbsp;</label> </td>
+      <td>眼砂<br><input name="iris" type="text" value="{{iris}}"></td>
+    </tr>
+    <tr>
+      <td align="center" colspan="5">这是原网页：<br><iframe align="center" src="{{url}}" width="1100" height="500" name="url_name" scrolling="yes" alt="请检查网络状态" ></iframe></td>
+    </tr>
+</table>
+</form>
+
+<div align = "center" class="footer"><br>指导老师：郭韦昱<br>计算机15 甘泉</div>
+
+</body>
+
+</html>

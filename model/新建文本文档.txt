@@ -1,0 +1,9 @@
+import sqlite3
+
+conn = sqlite3.connect('user.db',check_same_thread=False)
+c = conn.cursor()
+#c.execute("create table user (id INTEGER PRIMARY KEY AUTOINCREMENT, name varchar(20) not null UNIQUE, password varchar(32) not null);")
+c.execute("select name from user")
+print(c.fetchall())
+print('done')
+conn.close()
