@@ -1,5 +1,0 @@
-import os
-
-f = open('index.html','r',encoding='UTF-8')
-for i in range(0,5):
-    print(f.readline().strip())
